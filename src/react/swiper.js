@@ -151,29 +151,34 @@ const Swiper = forwardRef(
     }
 
     return (
-      <Tag
-        ref={swiperElRef}
-        className={uniqueClasses(`${containerClasses}${className ? ` ${className}` : ''}`)}
-        {...restProps}
-      >
-        {slots['container-start']}
+      <>
         {needsNavigation(swiperParams) && (
           <>
             <div ref={prevElRef} className="swiper-button-prev" />
             <div ref={nextElRef} className="swiper-button-next" />
           </>
         )}
-        {needsScrollbar(swiperParams) && <div ref={scrollbarElRef} className="swiper-scrollbar" />}
-        {needsPagination(swiperParams) && (
-          <div ref={paginationElRef} className="swiper-pagination" />
-        )}
-        <WrapperTag className="swiper-wrapper">
-          {slots['wrapper-start']}
-          {renderSlides()}
-          {slots['wrapper-end']}
-        </WrapperTag>
-        {slots['container-end']}
-      </Tag>
+        <Tag
+          ref={swiperElRef}
+          className={uniqueClasses(`${containerClasses}${className ? ` ${className}` : ''}`)}
+          {...restProps}
+        >
+          {slots['container-start']}
+
+          {needsScrollbar(swiperParams) && (
+            <div ref={scrollbarElRef} className="swiper-scrollbar" />
+          )}
+          {needsPagination(swiperParams) && (
+            <div ref={paginationElRef} className="swiper-pagination" />
+          )}
+          <WrapperTag className="swiper-wrapper">
+            {slots['wrapper-start']}
+            {renderSlides()}
+            {slots['wrapper-end']}
+          </WrapperTag>
+          {slots['container-end']}
+        </Tag>
+      </>
     );
   },
 );
